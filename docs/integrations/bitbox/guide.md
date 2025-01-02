@@ -20,7 +20,7 @@ Note: You will need to be running Tor on your device, find guides to set this up
 
    - Note: You may wish to remove the default servers
 
-1. Under "Add a server," add your electrs onion address from your electrs service page (found on StartOS's electrs service page, under "Properties"), followed by :50001 for the port, as shown. Click "Check" to test.
+1. Under "Add a server," add your electrs onion address from your electrs service page (found on StartOS's electrs service page, under "Properties"), followed by :40001 for the port, as shown. Click "Check" to test.
 
    ![Add Server](./assets/bitbox4.png)
 

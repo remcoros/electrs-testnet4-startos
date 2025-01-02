@@ -20,7 +20,7 @@ const matchBitcoindConfig = shape({
 });
 
 export const dependencies: T.ExpectedExports.dependencies = {
-  bitcoind: {
+  "bitcoind-testnet": {
     // deno-lint-ignore require-await
     async check(effects, configInput) {
       effects.info("check bitcoind");

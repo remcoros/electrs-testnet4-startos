@@ -45,10 +45,10 @@ RUN chmod a+x /usr/local/bin/check-synced.sh
 WORKDIR /data
 
 # Electrum RPC
-EXPOSE 50001
+EXPOSE 40001
 
 # Prometheus monitoring
-EXPOSE 4224
+EXPOSE 44224
 
 STOPSIGNAL SIGINT
 

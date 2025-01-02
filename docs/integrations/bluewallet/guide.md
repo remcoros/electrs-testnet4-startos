@@ -10,7 +10,7 @@
 
 1. Fill in your electrs `Hostname` from the StartOS `Services -> electrs -> Properties` page, to BlueWallet's host field.
 
-1. Fill in your electrs `Port` from the StartOS `Services -> electrs -> Properties` page, to BlueWallet's port field. 50001 is electrs' default port.
+1. Fill in your electrs `Port` from the StartOS `Services -> electrs -> Properties` page, to BlueWallet's port field. 40001 is electrs' default port.
 
 1. Select 'Save'.
 
