@@ -1,7 +1,7 @@
 import { FileHelper } from '@start9labs/start-sdk'
 import { sdk } from './sdk'
 import { port } from './utils'
-import { manifest } from 'bitcoind-startos/startos/manifest'
+import { manifest } from 'bitcoind-testnet4-startos/startos/manifest'
 
 export const main = sdk.setupMain(async ({ effects, started }) => {
   /**
@@ -28,7 +28,7 @@ export const main = sdk.setupMain(async ({ effects, started }) => {
         type: 'directory',
       })
       .mountDependency<typeof manifest>({
-        dependencyId: 'bitcoind',
+        dependencyId: 'bitcoind-testnet',
         volumeId: 'main',
         subpath: null,
         mountpoint: '/mnt/bitcoind',
@@ -38,7 +38,7 @@ export const main = sdk.setupMain(async ({ effects, started }) => {
   )
 
   // Restart if Bitcoin .cookie changes
-  await FileHelper.string(`${electrsContainer.rootfs}/mnt/bitcoind/.cookie`)
+  await FileHelper.string(`${electrsContainer.rootfs}/mnt/bitcoind/testnet4/.cookie`)
     .read()
     .const(effects)
 

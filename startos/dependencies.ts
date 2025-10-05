@@ -1,8 +1,8 @@
 import { sdk } from './sdk'
-import { config } from 'bitcoind-startos/startos/actions/config/other'
+import { config } from 'bitcoind-testnet4-startos/startos/actions/config/other'
 
 export const setDependencies = sdk.setupDependencies(async ({ effects }) => {
-  await sdk.action.createTask(effects, 'bitcoind', config, 'critical', {
+  await sdk.action.createTask(effects, 'bitcoind-testnet', config, 'critical', {
     input: {
       kind: 'partial',
       value: {
@@ -14,7 +14,7 @@ export const setDependencies = sdk.setupDependencies(async ({ effects }) => {
   })
 
   return {
-    bitcoind: {
+    'bitcoind-testnet': {
       healthChecks: [],
       kind: 'running',
       versionRange: '>=29.1:2-beta.0',

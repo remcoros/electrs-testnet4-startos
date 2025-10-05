@@ -1,10 +1,10 @@
 #!/bin/sh
 
-b_host="bitcoind.startos"
-b_cookie="/mnt/bitcoind/.cookie"
+b_host="bitcoind-testnet.startos"
+b_cookie="/mnt/bitcoind/testnet4/.cookie"
 
 #Get blockchain info from the bitcoin rpc
-b_gbc_result=$(curl -sS --user "$(cat $b_cookie)" --data-binary '{"jsonrpc": "1.0", "id": "sync-hck", "method": "getblockchaininfo", "params": []}' -H 'content-type: text/plain;' http://$b_host:8332/ 2>&1)
+b_gbc_result=$(curl -sS --user "$(cat $b_cookie)" --data-binary '{"jsonrpc": "1.0", "id": "sync-hck", "method": "getblockchaininfo", "params": []}' -H 'content-type: text/plain;' http://$b_host:48332/ 2>&1)
 error_code=$?
 b_gbc_error=$(echo "$b_gbc_result" | yq '.error' -)
 if [ $error_code -ne 0 ]; then
@@ -30,7 +30,7 @@ elif [ "$b_block_ibd" != "false" ]; then
     exit 61
 else
     #Gather keys/values from prometheus rpc:
-    curl_res=$(curl -sS localhost:4224)
+    curl_res=$(curl -sS localhost:44224)
     error_code=$?
 
     if [ $error_code -ne 0 ]; then
@@ -43,7 +43,7 @@ else
     #^The prometheus RPC's num-running-compactions key doesn't seem to correspond to actual
     # compaction events, so we'll determine compaction by another, dumber but accurate method:
     chk_numlines=100000 #Look through the last 100,000 lines of the db LOG
-    log_file="/data/db/bitcoin/LOG"
+    log_file="/data/db/testnet4/LOG"
     tail_log="tail -$chk_numlines $log_file"
     compaction_job=$($tail_log | grep EVENT_LOG | grep "ManualCompaction" | tail -1 | cut -d" " -f7)
     if [ -n "$compaction_job" ]; then
@@ -61,7 +61,7 @@ else
             exit 61
         else
             #Check to make sure the electrs RPC is actually up and responding
-            features_res=$(echo '{"jsonrpc": "2.0", "method": "server.features", "params": ["", "1.4"], "id": 0}' | netcat -w 1 127.0.0.1 50001)
+            features_res=$(echo '{"jsonrpc": "2.0", "method": "server.features", "params": ["", "1.4"], "id": 0}' | netcat -w 1 127.0.0.1 40001)
             server_string=$(echo "$features_res" | yq '.result.server_version')
             if [ -n "$server_string" ]; then
                 #Index is synced to tip

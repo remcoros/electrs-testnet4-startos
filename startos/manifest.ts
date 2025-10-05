@@ -8,8 +8,8 @@ const architectures =
 
 
 export const manifest = setupManifest({
-  id: 'electrs',
-  title: 'Electrs',
+  id: 'electrs-testnet',
+  title: 'Electrs (testnet4)',
   license: 'mit',
   wrapperRepo: 'https://github.com/Start9Labs/electrs-startos/',
   upstreamRepo: 'https://github.com/romanz/electrs/',
@@ -46,12 +46,12 @@ export const manifest = setupManifest({
     stop: null,
   },
   dependencies: {
-    bitcoind: {
+    'bitcoind-testnet': {
       description: 'Used to subscribe to new block events.',
       optional: false,
       metadata: {
-        title: 'A Bitcoin Full Node',
-        icon: 'https://bitcoin.org/img/icons/opengraph.png',
+        title: 'A Bitcoin Full Node (testnet4)',
+        icon: 'https://github.com/remcoros/bitcoind-testnet4-startos/blob/testnet4/icon.png?raw=true',
       },
     },
   },
